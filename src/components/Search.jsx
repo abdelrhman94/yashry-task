@@ -1,6 +1,6 @@
 import React from "react";
 
-const Search = () => {
+const Search = (props) => {
   return (
     <>
       <div className="input-group">
@@ -8,7 +8,8 @@ const Search = () => {
           type="text"
           id="search_field"
           className="form-control"
-          placeholder="Enter Product Name ..."
+          placeholder={props.placeholder}
+          onChange={props.handleChange}
         />
         <div className="input-group-append">
           <button id="search_btn" className="btn">
