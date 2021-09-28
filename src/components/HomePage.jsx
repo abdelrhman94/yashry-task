@@ -1,13 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
-// import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
 
 const API_URL = "http://test-api.edfa3ly.io/product";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
-  // const [price, setPrice] = useState([1, 1000]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
