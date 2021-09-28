@@ -1,11 +1,13 @@
 import "./App.css";
-
+import Header from "./components/Header";
+import HomePage from "./components/HomePage";
 function App() {
   return (
-    <div>
-      <h1>hello</h1>
-      <button className="btn btn-warning">click me</button>
-    </div>
+    <>
+      <Header />
+      <HomePage />
+
+    </>
   );
 }
 

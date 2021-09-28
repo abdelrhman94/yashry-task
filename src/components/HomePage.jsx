@@ -1,0 +1,67 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useState, useEffect } from "react";
+// import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+
+const API_URL = "http://test-api.edfa3ly.io/product";
+
+const HomePage = () => {
+  const [products, setProducts] = useState([]);
+  // const [price, setPrice] = useState([1, 1000]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(API_URL);
+        const listProducts = await response.json();
+        setProducts(listProducts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    (async () => await fetchProducts())();
+  }, []);
+
+  return (
+    <div className="container container-fluid">
+      <h1 id="products_heading">Latest Products</h1>
+
+      <section id="products" className="container mt-5">
+        <div className="row">
+          {products &&
+            products.map((product) => (
+              <div
+                key={product.id}
+                className="col-sm-12 col-md-6 col-lg-3 my-3"
+              >
+                <div className="card p-3 rounded">
+                  <img
+                    className="card-img-top mx-auto"
+                    src={product.image}
+                    alt=""
+                  />
+                  <div className="card-body d-flex flex-column">
+                    <h5 className="card-title">
+                      <a key="1" href="#">
+                        {product.name}
+                      </a>
+                    </h5>
+                    <div className="ratings mt-auto">
+                      <div className="rating-outer">
+                        <div className="rating-inner"></div>
+                      </div>
+                      <span id="no_of_reviews">{product.rating}</span>
+                    </div>
+                    <p className="card-text">
+                      {product.price} {product.currency}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default HomePage;
