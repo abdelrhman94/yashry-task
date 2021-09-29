@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from "react";
+import Category from "./Category";
+import { API_URL } from "../constants";
 
-const API_URL = "http://test-api.edfa3ly.io/product";
 
 const Products = ({ keyWord }) => {
   const [products, setProducts] = useState([]);
@@ -21,8 +22,8 @@ const Products = ({ keyWord }) => {
 
   return (
     <div className="container container-fluid">
+      <Category />
       <h1 id="products_heading">Latest Products</h1>
-
       <section id="products" className="container mt-5">
         <div className="row">
           {products &&
@@ -60,7 +61,7 @@ const Products = ({ keyWord }) => {
                         <span id="no_of_reviews">{product.rating}</span>
                       </div>
                       <p className="card-text">
-                        {product.price} {product.currency}
+                        ${product.price} {product.currency}
                       </p>
                     </div>
                   </div>
