@@ -23,14 +23,13 @@ const Category = ({ setCategoryId }) => {
         style={{ cursor: "pointer" }}
       >
         {categories.map((category) => (
-          <div className="card mx-2 p-3 rounded">
-            <span key={category.id} onClick={() => setCategoryId(category.id)}>
-              {category.name}
+          <div key={category.id} className="card mx-2 p-3 rounded">
+            <span onClick={() => setCategoryId(category.id)}>
+              <h5>{category.name}</h5>
               <img
                 className="card-img-top mx-auto"
                 src={category.image}
                 alt=""
-                srcset=""
               />
             </span>
           </div>

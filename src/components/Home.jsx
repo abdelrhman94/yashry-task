@@ -27,7 +27,7 @@ const Home = () => {
         setSelectedProducts(listProducts);
       }
     } catch (error) {
-      console.log(error);
+      
     }
   };
   return (
