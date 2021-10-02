@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
+import Home from "./components/Home";
 import "./App.css";
-import Header from "./components/Header";
-import Products from "./components/Products";
-function App() {
-  const [keyWord, setKeyWord] = useState("");
 
+
+function App() {
+ 
   return (
     <>
-      <Header setKeyWord={setKeyWord} />
-      <Products keyWord={keyWord} />
+     <Home />
     </>
   );
 }

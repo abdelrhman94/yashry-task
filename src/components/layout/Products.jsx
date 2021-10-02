@@ -1,33 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState, useEffect } from "react";
-import Category from "./Category";
-import { API_URL } from "../constants";
+import React from "react";
 
-
-const Products = ({ keyWord }) => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(API_URL);
-        const listProducts = await response.json();
-        setProducts(listProducts);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    (async () => await fetchProducts())();
-  }, []);
-
+const Products = ({ keyWord, selectedProducts }) => {
   return (
     <div className="container container-fluid">
-      <Category />
       <h1 id="products_heading">Latest Products</h1>
       <section id="products" className="container mt-5">
         <div className="row">
-          {products &&
-            products
+          {selectedProducts &&
+            selectedProducts
               .filter((product) => {
                 if (keyWord === "") {
                   return true;
