@@ -18,12 +18,13 @@ const Category = ({ setCategoryId }) => {
   return (
     <div className="mt-5 container">
       <h3 className="mb-3">Categories</h3>
-      <div
-        className="pl-0 d-flex justify-content-around"
-        style={{ cursor: "pointer" }}
-      >
+      <div className="pl-0 d-flex justify-content-around">
         {categories.map((category) => (
-          <div key={category.id} className="card mx-2 p-3 rounded">
+          <div
+            key={category.id}
+            className="card mx-2 p-3 rounded"
+            style={{ cursor: "pointer" }}
+          >
             <span onClick={() => setCategoryId(category.id)}>
               <h5>{category.name}</h5>
               <img
