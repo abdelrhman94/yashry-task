@@ -1,39 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Header from "./layout/Header";
 import Category from "./layout/Category";
 import Products from "./layout/Products";
 import { API_URL } from "../constants";
+import Filters from "./layout/Filters";
+import "./Home.css";
 
 const Home = () => {
   const [keyWord, setKeyWord] = useState("");
-  const [categoryId, setCategoryId] = useState(null);
   const [products, setProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
 
-  useEffect(() => {
-    (async () => await fetchProducts())();
-  });
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       const response = await fetch(API_URL);
       const listProducts = await response.json();
       setProducts(listProducts);
-      if (categoryId) {
-        const selectedProducts = products.filter(
-          (product) => product.id === categoryId
-        );
-        setSelectedProducts(selectedProducts);
-      } else {
-        setSelectedProducts(listProducts);
-      }
-    } catch (error) {
-      
-    }
+      setSelectedProducts(listProducts);
+    } catch (error) {}
+  }, []);
+
+  useEffect(() => {
+    (async () => await fetchProducts())();
+  }, [fetchProducts]);
+
+  const filterProductByCategory = (categoryId) => {
+    const filteredProducts = products.filter(
+      (product) => product.categoryId === categoryId
+    );
+    setSelectedProducts(filteredProducts);
   };
+
   return (
     <>
       <Header setKeyWord={setKeyWord} />
-      <Category setCategoryId={setCategoryId} />
+      <Filters />
+      <Category setCategoryId={filterProductByCategory} />
       <Products keyWord={keyWord} selectedProducts={selectedProducts} />
     </>
   );
